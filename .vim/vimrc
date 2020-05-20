@@ -1,0 +1,59 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'idris-hackers/idris-vim'
+Plug 'kassio/neoterm'
+Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
+Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim' }
+call plug#end()
+
+set number
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+let &t_SI = "\<Esc>[5 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_EI = "\<Esc>[1 q"
+
+set background=dark
+if has('termguicolors')
+  set termguicolors
+  let g:gruvbox_material_background = 'hard'
+  let g:gruvbox_material_enable_bold = 1
+  let g:gruvbox_material_enable_italic = 1
+  let g:gruvbox_material_diagnostic_line_highlight = 1
+  let g:gruvbox_material_palette = 'mix'
+  colorscheme gruvbox-material
+elseif &t_Co == 256
+  let g:gruvbox_contrast_dark = 'hard'
+  colorscheme gruvbox
+endif
+
+let g:neoterm_default_mod='belowright'
+let g:neoterm_size=16
+let g:neoterm_autoscroll=1
+nnoremap <leader><cr> :TREPLSendLine<cr>j
+vnoremap <leader><cr> :TREPLSendSelection<cr>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
