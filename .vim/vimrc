@@ -45,17 +45,19 @@ let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[1 q"
 
 set background=dark
-if has('termguicolors')
-  set termguicolors
-  let g:gruvbox_material_background = 'hard'
-  let g:gruvbox_material_enable_bold = 1
-  let g:gruvbox_material_enable_italic = 1
-  let g:gruvbox_material_diagnostic_line_highlight = 1
-  let g:gruvbox_material_palette = 'mix'
-  colorscheme gruvbox-material
-elseif &t_Co == 256
-  let g:gruvbox_contrast_dark = 'hard'
-  colorscheme gruvbox
+if &t_Co >= 256
+  if has('termguicolors')
+    set termguicolors
+    let g:gruvbox_material_background = 'hard'
+    let g:gruvbox_material_enable_bold = 1
+    let g:gruvbox_material_enable_italic = 1
+    let g:gruvbox_material_diagnostic_line_highlight = 1
+    let g:gruvbox_material_palette = 'mix'
+    colorscheme gruvbox-material
+  else
+    let g:gruvbox_contrast_dark = 'hard'
+    colorscheme gruvbox
+  endif
 endif
 
 let g:neoterm_default_mod='belowright'
