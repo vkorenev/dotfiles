@@ -45,7 +45,7 @@ let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[1 q"
 
 set background=dark
-if &t_Co >= 256
+if has('gui_running') || &t_Co >= 256
   if has('termguicolors')
     set termguicolors
     let g:gruvbox_material_background = 'hard'
