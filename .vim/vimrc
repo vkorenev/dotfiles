@@ -31,6 +31,8 @@ Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
 " Idris
 Plug 'idris-hackers/idris-vim'
+" Markdown
+Plug 'plasticboy/vim-markdown'
 " Unison
 Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim' }
 call plug#end()
@@ -72,3 +74,5 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
 let g:ale_completion_enabled = 1
+
+let g:vim_markdown_folding_disabled = 1
