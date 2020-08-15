@@ -5,6 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
 # history defaults
 HISTFILE=~/.zsh_history
 SAVEHIST=10000
@@ -65,6 +71,10 @@ fi
 
 fpath+=$COMPLETIONS_DIR
 
+for p in ${(z)NIX_PROFILES}; do
+  fpath+=($p/share/zsh/site-functions $p/share/zsh/$ZSH_VERSION/functions $p/share/zsh/vendor-completions)
+done
+
 autoload -U compinit && compinit
 
 export VISUAL=vim
@@ -72,6 +82,7 @@ export VISUAL=vim
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export NIX_PATH="darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:darwin=$HOME/.nix-defexpr/channels/darwin:nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
