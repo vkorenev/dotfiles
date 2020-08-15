@@ -55,6 +55,24 @@ fi
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+if type kubectl &> /dev/null; then
+  source <(kubectl completion zsh)
+fi
+
+if type qpdf &> /dev/null; then
+  source <(qpdf --completion-zsh)
+fi
+
+if type rustup &> /dev/null; then
+  COMPLETIONS_DIR=$HOME/.zsh/completions
+  mkdir -p $COMPLETIONS_DIR
+  rustup completions zsh > $COMPLETIONS_DIR/_rustup
+  rustup completions zsh cargo > $COMPLETIONS_DIR/_cargo
+  fpath+=$COMPLETIONS_DIR
+fi
+
+autoload -U compinit && compinit
+
 export VISUAL=vim
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
