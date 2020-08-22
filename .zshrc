@@ -51,6 +51,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 
     alias diff='diff --color=auto'
+else
+    export CLICOLOR=1 
 fi
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
