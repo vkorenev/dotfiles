@@ -57,8 +57,11 @@ fi
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+COMPLETIONS_DIR=$HOME/.zsh/completions
+mkdir -p $COMPLETIONS_DIR
+
 if type kubectl &> /dev/null; then
-  source <(kubectl completion zsh)
+  kubectl completion zsh > $COMPLETIONS_DIR/_kubectl
 fi
 
 if type qpdf &> /dev/null; then
@@ -66,12 +69,11 @@ if type qpdf &> /dev/null; then
 fi
 
 if type rustup &> /dev/null; then
-  COMPLETIONS_DIR=$HOME/.zsh/completions
-  mkdir -p $COMPLETIONS_DIR
   rustup completions zsh > $COMPLETIONS_DIR/_rustup
   rustup completions zsh cargo > $COMPLETIONS_DIR/_cargo
-  fpath+=$COMPLETIONS_DIR
 fi
+
+fpath+=$COMPLETIONS_DIR
 
 autoload -U compinit && compinit
 
