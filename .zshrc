@@ -65,7 +65,7 @@ if type kubectl &> /dev/null; then
 fi
 
 if type qpdf &> /dev/null; then
-  source <(qpdf --completion-zsh)
+  qpdf --completion-zsh > $COMPLETIONS_DIR/_qpdf
 fi
 
 if type rustup &> /dev/null; then
