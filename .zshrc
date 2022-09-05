@@ -65,6 +65,9 @@ fi
 
 fpath+=$COMPLETIONS_DIR
 
+[[ -d /opt/brew/share/zsh/site-functions/ ]] && fpath+=(/opt/brew/share/zsh/site-functions/)
+[[ -d /opt/homebrew/share/zsh/site-functions/ ]] && fpath+=(/opt/homebrew/share/zsh/site-functions/)
+
 autoload -U compinit && compinit
 
 export VISUAL=vim
