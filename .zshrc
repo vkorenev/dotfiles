@@ -27,6 +27,7 @@ zicompinit # <- https://z.digitalclouds.dev/docs/guides/commands
 zi light zsh-users/zsh-autosuggestions
 zi light zsh-users/zsh-completions
 zi light zdharma/fast-syntax-highlighting
+zi light olets/zsh-window-title
 zi load zdharma/history-search-multi-word
 zi ice depth=1; zinit light romkatv/powerlevel10k
 
