@@ -31,12 +31,6 @@ Plug 'rbong/vim-flog'
 Plug 'sheerun/vim-polyglot'
 Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
-" Idris
-Plug 'idris-hackers/idris-vim'
-" Markdown
-Plug 'plasticboy/vim-markdown'
-" Unison
-Plug 'unisonweb/unison', { 'rtp': 'editor-support/vim' }
 call plug#end()
 
 set number
