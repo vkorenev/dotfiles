@@ -66,8 +66,10 @@ fi
 
 fpath+=$COMPLETIONS_DIR
 
-[[ -d /opt/brew/share/zsh/site-functions/ ]] && fpath+=(/opt/brew/share/zsh/site-functions/)
-[[ -d /opt/homebrew/share/zsh/site-functions/ ]] && fpath+=(/opt/homebrew/share/zsh/site-functions/)
+if type brew &>/dev/null
+then
+  fpath+="$(brew --prefix)/share/zsh/site-functions"
+fi
 
 autoload -U compinit && compinit
 
@@ -78,4 +80,5 @@ export VISUAL=vim
 
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+[[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ]] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
+[[ -f ~/.iterm2_shell_integration.zsh ]] && source ~/.iterm2_shell_integration.zsh
