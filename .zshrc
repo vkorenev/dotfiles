@@ -76,8 +76,7 @@ fi
 
 fpath+=$COMPLETIONS_DIR
 
-if type brew &>/dev/null
-then
+if type brew &> /dev/null; then
   fpath+="$(brew --prefix)/share/zsh/site-functions"
 fi
 
