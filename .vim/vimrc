@@ -31,6 +31,7 @@ Plug 'rbong/vim-flog'
 Plug 'sheerun/vim-polyglot'
 Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
+Plug 'kaarmu/typst.vim'
 call plug#end()
 
 set number
